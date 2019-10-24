@@ -47,6 +47,12 @@ int MyRecursion::recursion(int leftBorder, int rightBorder) {
 
     testWorkingDistance(leftBorder, rightBorder);
 
+    if (rightBorder<5)
+    {
+        write("it's not a parameter list");
+        return 0;
+    }
+
     if (leftBorder >= rightBorder)
     {
         write("it's a parameter list");
@@ -62,7 +68,7 @@ int MyRecursion::recursion(int leftBorder, int rightBorder) {
         }
     }
 
-    if (str[leftBorder + symbolCount] != '=') {
+    if (str[leftBorder + symbolCount] != '=' && (!verification)) {
         verification = false;
     }
     symbolCount++;
@@ -112,13 +118,9 @@ int MyRecursion::recursion(int leftBorder, int rightBorder) {
 int main(int argc, char* argv[]) {
 
     if (argc == 1){
-        std::cout << "argc: " << argc << std::endl;
-        std::cout << "argv[0]: " << argv[0] << std::endl;
-       // std::cout << "argv[1]:" << argv[1] << std::endl;
-        std::cout << "enter" << std::endl;
         std::string line;
         std::ifstream in;
-        in.open("D:\\study\\test.txt");
+        in.open("test.txt");
         if (in.is_open())
         {
             std::cout << "file opened" << std::endl;
@@ -131,9 +133,7 @@ int main(int argc, char* argv[]) {
         }
         in.close();//закрываем файл
     }else{
-        std::cout << argv[1] << std::endl;
-        MyRecursion Text;//(argv[1]);
-    //std::cout << "Enter string" << "\n";
+        MyRecursion Text;
         Text.read(argv[1]);
         Text.recursion(0, Text.length);
 
